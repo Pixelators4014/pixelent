@@ -67,12 +67,12 @@ model {
         }
       }
       binaries.all {
-        lib library: 'VendorDriver', linkage: 'shared'
+        lib library: 'PixelentDriver', linkage: 'shared'
       }
       nativeUtils.useRequiredLibrary(it, 'wpilib_shared')
     }
 
-    VendorDriver(JniNativeLibrarySpec) {
+    PixelentDriver(JniNativeLibrarySpec) {
       enableCheckTask true
       javaCompileTasks << compileJava
       jniCrossCompileOptions << JniCrossCompileOptions(nativeUtils.wpi.platforms.roborio)
@@ -104,13 +104,13 @@ model {
         }
 
         binaries.all {
-          lib library: 'VendorDriver', linkage: 'shared'
+          lib library: 'PixelentDriver', linkage: 'shared'
         }
 
         nativeUtils.useRequiredLibrary(it, "wpilib_executable_shared", "googletest_static")
     }
 
-    VendorDriverTest {
+    PixelentDriverTest {
         sources.cpp {
             source {
                 srcDir 'src/test/driver/cpp'
