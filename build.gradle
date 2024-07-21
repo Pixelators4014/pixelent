@@ -41,12 +41,12 @@ dependencies {
 nativeUtils {
   exportsConfigs {
     // Main library is just default empty. This will export everything
-    Vendor {
+    Pixelent {
     }
   }
   privateExportsConfigs {
     // Only export explicit symbols from driver library
-    VendorDriver {
+    PixelentDriver {
       exportsFile = project.file("src/main/driver/symbols.txt")
     }
   }
@@ -54,7 +54,7 @@ nativeUtils {
 
 model {
   components {
-    Vendor(NativeLibrarySpec) {
+    Pixelent(NativeLibrarySpec) {
       sources {
         cpp {
           source {
@@ -95,7 +95,7 @@ model {
     }
   }
   testSuites {
-    VendorTest {
+    PixelentTest {
         sources.cpp {
             source {
                 srcDir 'src/test/native/cpp'
