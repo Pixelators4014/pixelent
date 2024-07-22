@@ -44,7 +44,6 @@ ext.addTaskToCopyAllOutputs = { task ->
 
 def artifactGroupId = 'org.pixelators.pixelent'
 def baseArtifactId = 'Pixelent'
-def driverZipBaseName = "_GROUP_org_pixelators_pixelent_ID_${baseArtifactId}-driver_CLS"
 def zipBaseName = "_GROUP_org_pixelators_pixelent_ID_${baseArtifactId}-cpp_CLS"
 def javaBaseName = "_GROUP_org_pixelators_pixelent_ID_${baseArtifactId}-java_CLS"
 
@@ -76,26 +75,10 @@ task cppSourceZip(type: Zip) {
     }
 }
 
-task cppDriverHeadersZip(type: Zip) {
-    destinationDirectory = outputsFolder
-    archiveBaseName = driverZipBaseName
-    archiveClassifier = "headers"
-
-    from(licenseFile) {
-        into '/'
-    }
-
-    from('src/main/driver/include') {
-        into '/'
-    }
-}
-
 build.dependsOn cppHeadersZip
 addTaskToCopyAllOutputs(cppHeadersZip)
 build.dependsOn cppSourceZip
 addTaskToCopyAllOutputs(cppSourceZip)
-build.dependsOn cppDriverHeadersZip
-addTaskToCopyAllOutputs(cppDriverHeadersZip)
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     archiveClassifier = 'sources'
@@ -166,8 +149,6 @@ model {
     publishing {
         def taskList = createComponentZipTasks($.components, ['Vendor'], zipBaseName, Zip, project, includeStandardZipFormat)
 
-        def driverTaskList = createComponentZipTasks($.components, ['VendorDriver'], driverZipBaseName, Zip, project, includeStandardZipFormat)
-
         publications {
             cpp(MavenPublication) {
                 taskList.each {
@@ -177,16 +158,6 @@ model {
                 artifact cppSourceZip
 
                 artifactId = "${baseArtifactId}-cpp"
-                groupId artifactGroupId
-                version pubVersion
-            }
-            driver(MavenPublication) {
-                driverTaskList.each {
-                    artifact it
-                }
-                artifact cppDriverHeadersZip
-
-                artifactId = "${baseArtifactId}-driver"
                 groupId artifactGroupId
                 version pubVersion
             }

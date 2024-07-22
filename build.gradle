@@ -44,12 +44,6 @@ nativeUtils {
     Pixelent {
     }
   }
-  privateExportsConfigs {
-    // Only export explicit symbols from driver library
-    PixelentDriver {
-      exportsFile = project.file("src/main/driver/symbols.txt")
-    }
-  }
 }
 
 model {
@@ -66,32 +60,8 @@ model {
           }
         }
       }
-      binaries.all {
-        lib library: 'PixelentDriver', linkage: 'shared'
-      }
+      binaries.all {}
       nativeUtils.useRequiredLibrary(it, 'wpilib_shared')
-    }
-
-    PixelentDriver(JniNativeLibrarySpec) {
-      enableCheckTask true
-      javaCompileTasks << compileJava
-      jniCrossCompileOptions << JniCrossCompileOptions(nativeUtils.wpi.platforms.roborio)
-      // Leave these for future proofing
-      jniCrossCompileOptions << JniCrossCompileOptions(nativeUtils.wpi.platforms.linuxarm32)
-      jniCrossCompileOptions << JniCrossCompileOptions(nativeUtils.wpi.platforms.linuxarm64)
-      sources {
-        cpp {
-          source {
-            srcDirs 'src/main/driver/cpp'
-            include '**/*.cpp'
-          }
-          exportedHeaders {
-            srcDirs 'src/main/driver/include'
-          }
-        }
-      }
-
-      nativeUtils.useRequiredLibrary(it, "driver_shared")
     }
   }
   testSuites {
@@ -104,18 +74,6 @@ model {
         }
 
         binaries.all {
-          lib library: 'PixelentDriver', linkage: 'shared'
-        }
-
-        nativeUtils.useRequiredLibrary(it, "wpilib_executable_shared", "googletest_static")
-    }
-
-    PixelentDriverTest {
-        sources.cpp {
-            source {
-                srcDir 'src/test/driver/cpp'
-                include '**/*.cpp'
-            }
         }
 
         nativeUtils.useRequiredLibrary(it, "wpilib_executable_shared", "googletest_static")
