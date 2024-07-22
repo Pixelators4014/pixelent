@@ -4,7 +4,7 @@ ext.licenseFile = files("$rootDir/LICENSE.txt")
 
 def pubVersion = '0.0.1'
 
-def outputsFolder = file("$buildDir/outputs")
+def outputsFolder = file("$layout.buildDirectory/outputs")
 
 def versionFile = file("$outputsFolder/version.txt")
 
@@ -28,7 +28,7 @@ task libraryBuild() {}
 build.dependsOn outputVersions
 
 task copyAllOutputs(type: Copy) {
-    destinationDir file("$buildDir/allOutputs")
+    destinationDir file("$layout.buildDirectory/allOutputs")
     from versionFile
     dependsOn outputVersions
 }
@@ -128,7 +128,7 @@ build.dependsOn outputJar
 
 libraryBuild.dependsOn build
 
-def releasesRepoUrl = "$buildDir/repos/releases"
+def releasesRepoUrl = "$layout.buildDirectory/repos/releases"
 
 publishing {
     repositories {
