@@ -11,7 +11,7 @@ public class GetPoseRequest implements Request {
     public ByteBuffer getBytes(PixelentClientConfig config) {
         ByteBuffer buffer = ByteBuffer.allocate(28);
         // Version (2 bytes)
-        buffer.putShort(config.PROTOCOL_VERSION);
+        buffer.putShort(config.CLIENT_VERSION);
         // Command (1 byte)
         buffer.put((byte) 0);
         return buffer;
