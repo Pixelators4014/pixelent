@@ -1,62 +1,27 @@
 {
+    This line is to purposely make this fail to parse
     "fileName": "Pixelent.json",
     "name": "Pixelent",
     "version": "0.0.1",
     "frcYear": "2024",
-    "uuid": "Generate A Unique GUID https://guidgenerator.com/online-guid-generator.aspx and insert it here", This line is to purposely make this fail to parse
+    "uuid": "9000dc15-8b00-4c1a-b9eb-b0216089e101",
     "mavenUrls": [
         "ThisNeedsToBeTheRootMavenUrl"
     ],
     "jsonUrl": "InsertSomeUrlHere",
     "javaDependencies": [
         {
-            "groupId": "com.vendor.frc",
-            "artifactId": "Vendor-java",
+            "groupId": "org.pixelators.pixelent",
+            "artifactId": "Pixelent-java",
             "version": "0.0.1"
-        }
-    ],
-    "jniDependencies": [
-        {
-            "groupId": "com.vendor.frc",
-            "artifactId": "Vendor-driver",
-            "version": "0.0.1",
-            "skipInvalidPlatforms": true,
-            "isJar": false,
-            "validPlatforms": [
-                "windowsx86-64",
-                "windowsx86",
-                "linuxarm64",
-                "linuxx86-64",
-                "linuxathena",
-                "linuxarm32",
-                "osxuniversal"
-            ]
         }
     ],
     "cppDependencies": [
         {
-            "groupId": "com.vendor.frc",
-            "artifactId": "Vendor-cpp",
+            "groupId": "org.pixelators.pixelent",
+            "artifactId": "Pixelent-cpp",
             "version": "0.0.1",
-            "libName": "Vendor",
-            "headerClassifier": "headers",
-            "sharedLibrary": false,
-            "skipInvalidPlatforms": true,
-            "binaryPlatforms": [
-                "windowsx86-64",
-                "windowsx86",
-                "linuxarm64",
-                "linuxx86-64",
-                "linuxathena",
-                "linuxarm32",
-                "osxuniversal"
-            ]
-        },
-        {
-            "groupId": "com.vendor.frc",
-            "artifactId": "Vendor-driver",
-            "version": "0.0.1",
-            "libName": "VendorDriver",
+            "libName": "Pixelent",
             "headerClassifier": "headers",
             "sharedLibrary": false,
             "skipInvalidPlatforms": true,
